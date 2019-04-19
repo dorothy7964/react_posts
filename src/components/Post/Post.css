@@ -1,0 +1,15 @@
+.Post {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background-color: white;
+  box-shadow: 0 3px 6px rgb(0,0,0,0.8), 0 3px 6px rgb(0,0,0,0.9);
+}
+
+.Post h1 {
+  font-size: 3rem;
+}
+
+.Post p {
+  font-size: 2rem;
+}
