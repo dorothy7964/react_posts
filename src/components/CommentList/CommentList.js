@@ -8,7 +8,7 @@ const CommentList = ({comments}) => {
   const commentList = comments.map(
     (comment, index)=>(
       <Comment
-        name={comment.name}
+        name={comment.email.split('@')[0]}
         body={comment.body}
         key={index}
       />
