@@ -29,29 +29,36 @@ class PostContainer extends Component {
       fetching : true // requesting..
     });
 
+    try {
+      // wait for two promises
+      const info = await Promise.all([
+        service.getPost(postId),
+        service.getComments(postId),
+      ]);
+      console.log(info);
+      console.log("비동기 통신 요청 중 : " + this.state.fetching);
+      // Object destructuring Syntax,
+      // takes out required values and create references to them
+      const { title, body } = info[0].data;
+      const comments = info[1].data;
 
-    // wait for two promises
-    const info = await Promise.all([
-      service.getPost(postId),
-      service.getComments(postId),
-    ]);
-    console.log(info);
-    console.log("비동기 통신 요청 중 : " + this.state.fetching);
-    // Object destructuring Syntax,
-    // takes out required values and create references to them
-    const { title, body } = info[0].data;
-    const comments = info[1].data;
-
-    this.setState({
-      postId,
-      post : {
-        title,
-        body
-      },
-      comments,
-      fetching : false // done!
-    });
-    console.log('비동기 통신 요청 끝난 후 : ' + this.state.fetching);
+      this.setState({
+        postId,
+        post : {
+          title,
+          body
+        },
+        comments,
+        fetching : false // done!
+      });
+      console.log('비동기 통신 요청 끝난 후 : ' + this.state.fetching);
+    } catch(e) {
+      // if err, stop at this point
+      this.setState({
+        fetching : false
+      });
+      console.log('error occurred', e);
+    }
   }
 
   handleNavigateClick = (type) => {
