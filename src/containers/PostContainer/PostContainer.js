@@ -55,10 +55,19 @@ class PostContainer extends Component {
   }
 
   render() {
+    const {postId, fetching, post, comments} = this.state;
+
     return (
       <PostWrapper>
-        <Navigate />
-        <Post />
+        <Navigate
+          postId={postId}
+          disabled={fetching}
+        />
+        <Post
+          title={post.title}
+          body={post.body}
+          comments={comments}
+        />
       </PostWrapper>
     );
   }
