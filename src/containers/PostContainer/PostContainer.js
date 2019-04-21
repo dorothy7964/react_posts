@@ -28,7 +28,7 @@ class PostContainer extends Component {
     this.setState({
       fetching : true // requesting..
     });
-    console.log(this.state.fetching);
+
 
     // wait for two promises
     const info = await Promise.all([
@@ -36,7 +36,7 @@ class PostContainer extends Component {
       service.getComments(postId),
     ]);
     console.log(info);
-
+    console.log("비동기 통신 요청 중 : " + this.state.fetching);
     // Object destructuring Syntax,
     // takes out required values and create references to them
     const { title, body } = info[0].data;
@@ -51,7 +51,7 @@ class PostContainer extends Component {
       comments,
       fetching : false // done!
     });
-    console.log(this.state.fetching);
+    console.log('비동기 통신 요청 끝난 후 : ' + this.state.fetching);
   }
 
   render() {
