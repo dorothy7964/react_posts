@@ -9,7 +9,7 @@ class PostContainer extends Component {
 
     // initializes component state
     this.state = {
-      postid : 1,
+      postId : 1,
       // tells whether the request is waiting for response or not
       fetching : false,
       post : {
@@ -54,6 +54,16 @@ class PostContainer extends Component {
     console.log('비동기 통신 요청 끝난 후 : ' + this.state.fetching);
   }
 
+  handleNavigateClick = (type) => {
+    const postId = this.state.postId;
+
+    if(type === 'NEXT'){
+      this.fetchPostInfo(postId + 1);
+    }else {
+      this.fetchPostInfo(postId - 1);
+    }
+  }
+
   render() {
     const {postId, fetching, post, comments} = this.state;
 
@@ -62,6 +72,7 @@ class PostContainer extends Component {
         <Navigate
           postId={postId}
           disabled={fetching}
+          onClick={this.handleNavigateClick}
         />
         <Post
           title={post.title}
