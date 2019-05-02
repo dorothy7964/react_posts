@@ -50,7 +50,7 @@ class Post extends Component {
     })
   }
   render() {
-    const { title, body, comments } = this.props;
+    const { title, body, comments } = this.state.postInfo;
     const { animate, direction } = this.state;
     const animation = animate
                       ? (direction === 'left' ? 'bounceOutLeft' : 'bounceOutRight')
