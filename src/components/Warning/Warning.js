@@ -30,11 +30,13 @@ class Warning extends Component {
   render() {
     const { message, visible } = this.props;
     const {closing } = this.state;
-
     if(!visible && !closing) return null;
+
+    const animation = closing? 'bounceOut' : 'bounceIn';
+    
     return(
       <div className="Warning-wrapper">
-        <div className={`Warning ${closing? 'bounceOut' : 'bounceIn'} animated`}>
+        <div className={`Warning ${animation} animated`}>
           {message}
         </div>
       </div>
